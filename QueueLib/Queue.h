@@ -24,8 +24,8 @@ public:
 	void Push(T d);
 	T Get();
 
-	bool isFull();
-	bool isEmpty();
+	bool isFull() const;
+	bool isEmpty() const;
 
 	TQueue<T>& operator =(const TQueue<T>& _v);
 	bool operator==(const TQueue<T>& _v) const;
@@ -36,6 +36,9 @@ public:
 	friend istream& operator >> (istream& istr, TQueue<T1>& A);
 
 	int Length() const;
+
+	T FindMin() const;
+	T FindMax() const;
 };
 
 template <class T1>
@@ -119,13 +122,13 @@ inline T TQueue<T>::Get()
 }
 
 template<class T>
-inline bool TQueue<T>::isFull()
+inline bool TQueue<T>::isFull() const
 {
 	return count == length;
 }
 
 template<class T>
-inline bool TQueue<T>::isEmpty()
+inline bool TQueue<T>::isEmpty() const
 {
 	return count == 0;
 }
@@ -162,6 +165,28 @@ template <class T>
 int TQueue<T>::Length() const
 {
 	return count;
+}
+
+template<class T>
+inline T TQueue<T>::FindMin() const
+{
+	if (this->isEmpty()) throw - 1;
+	T min = this->x[ind];
+	for (int i = 0; i <count; i++)
+		if (this->x[(i+this->ind)%this->length] < min)
+			min = this->x[(i + this->ind) % this->length];
+	return min;
+}
+
+template<class T>
+inline T TQueue<T>::FindMax() const
+{
+	if (this->isEmpty()) throw - 1;
+	T max = this->x[ind];
+	for (int i = 1; i < count; i++)
+		if (this->x[(i + this->ind) % this->length] > max)
+			max = this->x[(i + this->ind) % this->length];
+	return max;
 }
 
 

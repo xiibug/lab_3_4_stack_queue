@@ -33,6 +33,9 @@ public:
 	friend istream& operator >> (istream& istr, TStack<T1>& A);
 
 	int Length() const;
+
+	T FindMin() const;
+	T FindMax() const;
 };
 
 template <class T1>
@@ -146,6 +149,28 @@ template <class T>
 int TStack<T>::Length() const
 {
 	return ind;
+}
+
+template<class T>
+inline T TStack<T>::FindMin() const
+{
+	if (this->isEmpty()) throw - 1;
+	T min=this->x[0];
+	for (int i = 1; i < ind; i++)
+		if (this->x[i] < min)
+			min = this->x[i];
+	return min;
+}
+
+template<class T>
+inline T TStack<T>::FindMax() const
+{
+	if (this->isEmpty()) throw - 1;
+	T max = this->x[0];
+	for (int i = 1; i < ind; i++)
+		if (this->x[i] > max)
+			max = this->x[i];
+	return max;
 }
 
 

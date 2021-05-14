@@ -49,3 +49,19 @@ TEST(TQueue, can_get_length) {
 	t.Push(2);
 	EXPECT_EQ(t.Length(), 2);
 }
+
+TEST(TQueue, can_find_min) {
+	TQueue<int> t(3);
+	t.Push(4);
+	t.Push(2);
+	t.Push(3);
+	EXPECT_EQ(t.FindMin(), 2);
+}
+
+TEST(TQueue, can_find_max) {
+	TQueue<int> t(3);
+	t.Push(2);
+	t.Push(4);
+	t.Push(5);
+	EXPECT_EQ(t.FindMax(), 5);
+}
