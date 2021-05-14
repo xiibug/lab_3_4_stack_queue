@@ -65,3 +65,21 @@ TEST(TStack, can_find_max) {
 	t.Push(5);
 	EXPECT_EQ(t.FindMax(), 5);
 }
+
+TEST(TStack, can_use_file_input_output) {
+	TStack<int> t(4), s(3);
+	t.Push(2);
+	t.Push(4);
+	t.Push(5);
+	ofstream fout;
+	fout.open("file.txt");
+	fout << t;
+	fout.close();
+
+	ifstream fin;
+	fin.open("file.txt");
+	fin >> s;
+	fin.close();
+
+	EXPECT_EQ(t, s);
+}

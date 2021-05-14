@@ -65,3 +65,21 @@ TEST(TQueue, can_find_max) {
 	t.Push(5);
 	EXPECT_EQ(t.FindMax(), 5);
 }
+
+TEST(TQueue, can_use_file_input_output) {
+	TQueue<int> t(4), s(3);
+	t.Push(2);
+	t.Push(4);
+	t.Push(5);
+	ofstream fout;
+	fout.open("file1.txt");
+	fout << t;
+	fout.close();
+
+	ifstream fin;
+	fin.open("file1.txt");
+	fin >> s;
+	fin.close();
+
+	EXPECT_EQ(t, s);
+}

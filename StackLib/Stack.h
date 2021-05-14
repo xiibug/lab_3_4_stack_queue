@@ -2,6 +2,7 @@
 #define _MY_VECTOR_
 
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -32,6 +33,11 @@ public:
 	template <class T1>
 	friend istream& operator >> (istream& istr, TStack<T1>& A);
 
+	template <class T1>
+	friend ofstream& operator<< (ofstream& ostr, const TStack<T1>& A);
+	template <class T1>
+	friend ifstream& operator >> (ifstream& istr, TStack<T1>& A);
+
 	int Length() const;
 
 	T FindMin() const;
@@ -50,6 +56,30 @@ template <class T1>
 istream& operator >> (istream& istr, TStack<T1>& A) {
 	int count;
 	istr >> count;
+	if (count > A.length) throw - 1;
+	for (int i = 0; i < count; i++) {
+		T1 d;
+		istr >> d;
+		A.Push(d);
+	}
+	return istr;
+}
+
+template<class T1>
+ofstream& operator<<(ofstream& ostr, const TStack<T1>& A)
+{
+	ostr << A.length << ' '<< A.ind << endl;
+	for (int i = 0; i < A.ind; i++)
+		ostr << A.x[i] << endl;
+	return ostr;
+}
+
+template<class T1>
+ifstream& operator>>(ifstream& istr, TStack<T1>& A)
+{
+	int count;
+	istr >> A.length >> count;
+	A.x = new T1[A.length];
 	for (int i = 0; i < count; i++) {
 		T1 d;
 		istr >> d;
