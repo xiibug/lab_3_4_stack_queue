@@ -6,8 +6,8 @@ before_script:
   - mkdir ../build
   - cd ../build
 script:
-  - cmake ../3818
+  - cmake ../
   - make -j
-  - ./vector/vector
+  - ./test/MP2_TESTS
 notifications:
   email: false
