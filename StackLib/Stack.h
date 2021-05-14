@@ -92,7 +92,7 @@ TStack<T>& TStack<T>::operator=(const TStack<T>& _v)
 		return *this;
 	this->length = _v.length;
 	delete[] x;
-	this->x = new T[->this->length];
+	this->x = new T[this->length];
 	for (int i = 0; i < this->length; i++)
 		this->x[i] = _v.x[i];
 	this->ind = _v.ind;
